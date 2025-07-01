@@ -15,8 +15,7 @@ if ! command -v python3 &>/dev/null; then
 fi
 
 if ! python3 -c "import tkinter" &>/dev/null; then
-    echo "Ошибка: модуль tkinter не найден в python3."
-    echo "Установите tkinter, например, пакет python3-tk (название зависит от дистрибутива)."
+    echo "Ошибка: модуль tkinter не найден в python3. Установите tkinter и повторите. Arch - tk, Debian/Ubuntu - python3-tk, Fedora - python3-tkinter"
     exit 1
 fi
 
