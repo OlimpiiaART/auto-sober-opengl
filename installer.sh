@@ -24,7 +24,6 @@ mkdir -p "$(dirname "$INSTALL_PATH")"
 
 curl -sSL https://raw.githubusercontent.com/OlimpiiaART/sober_opengl/refs/heads/main/SoberOpenglToggleGui.py -o "$INSTALL_PATH"
 chmod 755 "$INSTALL_PATH"
-echo "Скрипт установлен в $INSTALL_PATH"
 
 cp "$DESKTOP_FILE" "/tmp/org.vinegarhq.Sober.desktop.backup.$(date +%Y%m%d%H%M%S)"
 
@@ -36,4 +35,4 @@ command -v update-desktop-database >/dev/null && {
     update-desktop-database ~/.local/share/applications/ 2>/dev/null || true
 }
 
-echo "✅ Установка завершена."
+echo "✅ Установка завершена. Скрипт установлен в $INSTALL_PATH"
