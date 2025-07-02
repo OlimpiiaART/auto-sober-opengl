@@ -2,7 +2,7 @@
 set -euo pipefail
 
 SUO="sudo"
-INSTALL_PATH="/opt/sober_useopengl_gui.sh"
+INSTALL_PATH="/opt/sober_use_opengl.sh"
 DESKTOP_FILE="/var/lib/flatpak/app/org.vinegarhq.Sober/current/active/export/share/applications/org.vinegarhq.Sober.desktop"
 
 if ! command -v zenity &>/dev/null; then
@@ -10,10 +10,18 @@ if ! command -v zenity &>/dev/null; then
     exit 1
 fi
 
-# little useless
+if [[ ! -f "$HOME/.config/sober-opengl-placeids.txt" ]]; then
+    touch "$HOME/.config/sober-opengl-placeids.txt"
+fi
+
+if [[ ! -f "$DESKTOP_FILE" ]]; then
+    echo "Ошибка: файл десктоп-запуска не найден: $DESKTOP_FILE"
+    exit 1
+fi
+
 "$SUO" mkdir -p "$(dirname "$INSTALL_PATH")"
 
-"$SUO" curl -sSL https://raw.githubusercontent.com/OlimpiiaART/sober_opengl/refs/heads/main/sober_useopengl_gui.sh -o "$INSTALL_PATH"
+"$SUO" curl -sSL https://raw.githubusercontent.com/OlimpiiaART/sober_opengl/refs/heads/main/sober_use_opengl.sh -o "$INSTALL_PATH"
 "$SUO" chmod 755 "$INSTALL_PATH"
 
 "$SUO" cp "$DESKTOP_FILE" "/tmp/org.vinegarhq.Sober.desktop.backup.$(date +%Y%m%d%H%M%S)"
