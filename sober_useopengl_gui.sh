@@ -3,7 +3,7 @@
 CONFIG_PATH="$HOME/.var/app/org.vinegarhq.Sober/config/sober/config.json"
 
 if [ ! -f "$CONFIG_PATH" ]; then
-    zenity --error --text="❌ Файл конфигурации не найден:\n$CONFIG_PATH"
+    zenity --error --text="Configuration file not found:\n$CONFIG_PATH"
     exit 1
 fi
 
