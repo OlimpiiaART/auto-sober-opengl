@@ -15,7 +15,8 @@ if [[ ! -f "$HOME/.config/sober-opengl-placeids.txt" ]]; then
 fi
 
 if [[ ! -f "$DESKTOP_FILE" ]]; then
-    echo "Ошибка: файл десктоп-запуска не найден: $DESKTOP_FILE"
+    echo "Error: The desktop startup file was not found: $DESKTOP_FILE."
+    echo "Install Sober."
     exit 1
 fi
 
