@@ -1,4 +1,4 @@
-# Sober OpenGL Toggle Installer
+# Automatic Sober OpenGL Toggle Installer
 
 This installer script sets up a helper script to automatic toggle OpenGL usage the Sober.
 
