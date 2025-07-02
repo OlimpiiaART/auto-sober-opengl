@@ -16,7 +16,7 @@ sudo chmod 755 "$INSTALL_PATH"
 
 sudo cp "$DESKTOP_FILE" "/tmp/org.vinegarhq.Sober.desktop.backup.$(date +%Y%m%d%H%M%S)"
 
-sudo sed -i 's|^Exec=.*|Exec=/usr/bin/python3 '"$INSTALL_PATH"' %u|' "$DESKTOP_FILE"
+sudo sed -i "s|^Exec=.*|Exec=$INSTALL_PATH %u|" "$DESKTOP_FILE"
 
 if command -v update-desktop-database >/dev/null; then
     sudo update-desktop-database /usr/share/applications/ 2>/dev/null || true
