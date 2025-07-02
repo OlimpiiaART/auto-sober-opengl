@@ -10,6 +10,7 @@ if ! command -v zenity &>/dev/null; then
     exit 1
 fi
 
+# little useless
 "$SUO" mkdir -p "$(dirname "$INSTALL_PATH")"
 
 "$SUO" curl -sSL https://raw.githubusercontent.com/OlimpiiaART/sober_opengl/refs/heads/main/sober_useopengl_gui.sh -o "$INSTALL_PATH"
@@ -19,6 +20,7 @@ fi
 
 "$SUO" sed -i "s|^Exec=.*|Exec=$INSTALL_PATH %u|" "$DESKTOP_FILE"
 
+# little useless
 if command -v update-desktop-database >/dev/null; then
     "$SUO" update-desktop-database /usr/share/applications/ 2>/dev/null || true
     "$SUO" update-desktop-database ~/.local/share/applications/ 2>/dev/null || true
