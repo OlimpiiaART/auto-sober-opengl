@@ -17,7 +17,7 @@ Example of whitelist file: `123456789,987654321,129279692364812`
 Open your terminal and run the following command. 
 
 ```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/OlimpiiaART/sober_opengl/refs/heads/main/installer.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/OlimpiiaART/sober_opengl/main/installer.sh)"
 ```
 
 **Note:** This script requires root privileges, so you may be prompted for your password.
