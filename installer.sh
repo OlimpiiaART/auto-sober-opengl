@@ -1,26 +1,27 @@
 #!/bin/bash
 set -euo pipefail
 
+SUO="sudo"
 INSTALL_PATH="/opt/sober_useopengl_gui.sh"
 DESKTOP_FILE="/var/lib/flatpak/app/org.vinegarhq.Sober/current/active/export/share/applications/org.vinegarhq.Sober.desktop"
 
 if ! command -v zenity &>/dev/null; then
-    echo "Ошибка: zenity не установлен. Установите zenity и повторите."
+    echo "Error: zenity is not installed. Install zenity and repeat."
     exit 1
 fi
 
-sudo mkdir -p "$(dirname "$INSTALL_PATH")"
+"$SUO" mkdir -p "$(dirname "$INSTALL_PATH")"
 
-sudo curl -sSL https://raw.githubusercontent.com/OlimpiiaART/sober_opengl/refs/heads/main/sober_useopengl_gui.sh -o "$INSTALL_PATH"
-sudo chmod 755 "$INSTALL_PATH"
+"$SUO" curl -sSL https://raw.githubusercontent.com/OlimpiiaART/sober_opengl/refs/heads/main/sober_useopengl_gui.sh -o "$INSTALL_PATH"
+"$SUO" chmod 755 "$INSTALL_PATH"
 
-sudo cp "$DESKTOP_FILE" "/tmp/org.vinegarhq.Sober.desktop.backup.$(date +%Y%m%d%H%M%S)"
+"$SUO" cp "$DESKTOP_FILE" "/tmp/org.vinegarhq.Sober.desktop.backup.$(date +%Y%m%d%H%M%S)"
 
-sudo sed -i "s|^Exec=.*|Exec=$INSTALL_PATH %u|" "$DESKTOP_FILE"
+"$SUO" sed -i "s|^Exec=.*|Exec=$INSTALL_PATH %u|" "$DESKTOP_FILE"
 
 if command -v update-desktop-database >/dev/null; then
-    sudo update-desktop-database /usr/share/applications/ 2>/dev/null || true
-    sudo update-desktop-database ~/.local/share/applications/ 2>/dev/null || true
+    "$SUO" update-desktop-database /usr/share/applications/ 2>/dev/null || true
+    "$SUO" update-desktop-database ~/.local/share/applications/ 2>/dev/null || true
 fi
 
-echo "✅ Установка завершена. Скрипт установлен в $INSTALL_PATH"
+echo "✅ The installation is complete. The script is installed in $INSTALL_PATH"
