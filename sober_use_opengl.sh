@@ -11,33 +11,39 @@ PLACEID_LIST="$HOME/.config/sober-opengl-placeids.txt"
 
 [[ -f "$PLACEID_LIST" ]] || echo "129279692364812," > "$PLACEID_LIST"
 
-[[ -n "${1:-}" ]] || {
-    zenity --error --text="No roblox-player string passed."
-    exit 1
+update_opengl_setting() {
+    if [[ $1 == true ]]; then
+        sed -i 's/"use_opengl": false/"use_opengl": true/' "$CONFIG_PATH"
+    else
+        sed -i 's/"use_opengl": true/"use_opengl": false/' "$CONFIG_PATH"
+    fi
 }
 
-# echo "$@" > ~/txt
+prompt_opengl_choice() {
+    CHOICE=$(zenity --list --title="Use OpenGL?" --text="$1" --column="" "False" "True")
+    case "$CHOICE" in
+        True) update_opengl_setting true ;;
+        False) update_opengl_setting false ;;
+        *) exit 0 ;;
+    esac
+}
+
+if [[ -z "${1:-}" ]]; then
+    prompt_opengl_choice "You have launched the Sober client, select OpenGL mode manually"
+    flatpak run org.vinegarhq.Sober "$@"
+    exit 0
+fi
 
 place_id=$(echo "$1" | sed 's/%3D/=/g' | grep -oE 'placeId=[0-9]+' | sed 's/.*=//' || true)
 
 if [[ -z "$place_id" ]]; then
-    CHOICE=$(zenity --list --title="Use OpenGL?" --text="placeId not found, select OpenGL mode manually" --column="" "False" "True")
-
-    if [ -z "$CHOICE" ]; then
-        exit 0
-    fi
-
-    if [ "$CHOICE" = "True" ]; then
-        sed -i 's/"use_opengl": false/"use_opengl": true/' "$CONFIG_PATH"
-    elif [ "$CHOICE" = "False" ]; then
-        sed -i 's/"use_opengl": true/"use_opengl": false/' "$CONFIG_PATH"
-    fi
+    prompt_opengl_choice "placeId not found, select OpenGL mode manually"
 else
     if grep -qw "$place_id" "$PLACEID_LIST"; then
-        sed -i 's/"use_opengl": false/"use_opengl": true/' "$CONFIG_PATH"
-        # zenity --info --title="Sober OpenGL Toggle"  --text="✅ placeId $place_id found\nOpenGL enabled"
+        update_opengl_setting true
+        # zenity --info --title="Sober OpenGL Toggle" --text="✅ placeId $place_id found\nOpenGL enabled"
     else
-        sed -i 's/"use_opengl": true/"use_opengl": false/' "$CONFIG_PATH"
+        update_opengl_setting false
         # zenity --info --title="Sober OpenGL Toggle" --text="⚠️ placeId $place_id not found\nOpenGL disabled"
     fi
 fi
