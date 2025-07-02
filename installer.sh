@@ -11,7 +11,7 @@ if ! command -v zenity &>/dev/null; then
 fi
 
 if [[ ! -f "$HOME/.config/sober-opengl-placeids.txt" ]]; then
-    touch "$HOME/.config/sober-opengl-placeids.txt"
+    echo "129279692364812," > "$HOME/.config/sober-opengl-placeids.txt"
 fi
 
 if [[ ! -f "$DESKTOP_FILE" ]]; then
