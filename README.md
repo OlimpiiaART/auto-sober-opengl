@@ -4,7 +4,7 @@ This installer script sets up a helper script to automatic toggle OpenGL usage t
 
 ---
 
-## How to Add `placeId`s to Enable OpenGL
+## How to add OpenGL inclusion for Roblox place
 
 To enable OpenGL for specific games, add their **placeIds** to the whitelist file `~/.config/sober-opengl-placeids.txt`. Each **placeId** should be placed after the previous one, separated by commas!
 Example of whitelist file: `123456789,987654321,129279692364812`
