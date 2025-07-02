@@ -21,7 +21,7 @@ fi
 
 mkdir -p "$(dirname "$INSTALL_PATH")"
 
-curl -sSL https://raw.githubusercontent.com/OlimpiiaART/auto-sober-opengl/refs/heads/main/sober_use_opengl.sh -o "$INSTALL_PATH"
+curl -sSL https://raw.githubusercontent.com/OlimpiiaART/auto-sober-opengl/main/sober_use_opengl.sh -o "$INSTALL_PATH"
 chmod +x "$INSTALL_PATH"
 
 sudo cp "$DESKTOP_FILE" "/tmp/org.vinegarhq.Sober.desktop.backup.$(date +%Y%m%d%H%M%S)"
