@@ -9,7 +9,7 @@ PLACEID_LIST="$HOME/.config/sober-opengl-placeids.txt"
     exit 1
 }
 
-[[ -f "$PLACEID_LIST" ]] || touch "$PLACEID_LIST"
+[[ -f "$PLACEID_LIST" ]] || echo "129279692364812," > "$PLACEID_LIST"
 
 [[ -n "${1:-}" ]] || {
     zenity --error --text="No roblox-player string passed."
