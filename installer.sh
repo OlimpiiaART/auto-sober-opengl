@@ -4,10 +4,10 @@
 INSTALL_PATH="$HOME/.local/bin/sober_use_opengl.sh"
 DESKTOP_FILE="/var/lib/flatpak/app/org.vinegarhq.Sober/current/active/export/share/applications/org.vinegarhq.Sober.desktop"
 
-if ! command -v zenity &>/dev/null; then
-    echo "Error: zenity is not installed. Install zenity and repeat."
-    exit 1
-fi
+# if ! command -v zenity &>/dev/null; then
+#     echo "Error: zenity is not installed. Install zenity and repeat."
+#     exit 1
+# fi
 
 if [[ ! -f "$HOME/.config/sober-opengl-placeids.txt" ]]; then
     echo "129279692364812," > "$HOME/.config/sober-opengl-placeids.txt"
